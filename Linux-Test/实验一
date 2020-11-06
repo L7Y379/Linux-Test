@@ -1,0 +1,69 @@
+#include<stdio.h >
+#include<stdlib.h >
+#include<string.h >
+
+typedef struct stuInfo {
+               char stuName[10];  /*学生姓名*/
+               int Age;  /*年龄*/
+            } ElemType;
+typedef struct node {
+                ElemType data;
+                struct node *next;
+           } ListNode, *ListPtr;
+
+ElemType read()
+{
+  ElemType e;
+  printf("Please enter the name:");
+  scanf("%s",e.stuName);
+  printf("Please enter the age:");
+  scanf("%d",&e.Age);char c=getchar();
+  return e;
+}
+
+ListPtr CreateList()
+{
+  ListPtr p=(ListPtr)malloc(sizeof(ListNode));
+  p->next=NULL;
+  printf("success!");
+  return p; 
+}
+void InsertList (ListPtr *p)
+{ 
+  ListPtr node=(ListPtr)malloc(sizeof(ListNode));
+  node->data=read();printf("a");
+  node->next=(*p)->next;
+  (*p)->next=node;
+}
+void PrintList(ListPtr p)
+{
+  printf("stuName\tAge\n");
+  p=p->next;
+  while(p!=NULL){
+  	printf("%s\t%d\n",p->data.stuName,p->data.Age);
+  	p=p->next;
+  }
+}
+int main(int argc,char argv[])
+{
+   ListPtr ListHead;
+   while(1)
+   {
+      printf("1 create list\n");
+      printf("2 printf list\n");
+      printf("3 insert list\n");
+      printf("4 quit\n");
+      char command =getchar();
+      char c =getchar();
+      switch(command)
+      {
+        case '1' : ListHead = CreateList();
+        break;
+        case '2' : PrintList(ListHead);
+        break;
+        case '3' : InsertList (&ListHead);
+        break;
+        case '4' :exit(0);
+      }
+   }
+}
